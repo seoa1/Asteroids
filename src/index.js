@@ -1,17 +1,8 @@
-const MovingObject = require("./moving_object.js");
-const Asteroid = require("./asteroid.js");
+const GameView = require("./game_view.js");
 
-window.MovingObject = MovingObject;
+window.GameView = GameView;
 window.addEventListener('DOMContentLoaded', (event) => {
     let ctx = document.getElementById("game-canvas").getContext('2d');
-    let obj = new MovingObject({
-        pos: [200, 200],
-        vel: [10, 10],
-        radius: 100,
-        color: "#00FF00"
-    });
-    obj.draw(ctx);
-
-    let asteroid = new Asteroid([400,400]);
-    asteroid.draw(ctx);
+    let game_view = new GameView(ctx);
+    game_view.start();
 })
