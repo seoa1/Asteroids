@@ -43,6 +43,10 @@ Game.prototype.moveObjects = function()  {
     })
 }
 
+Game.prototype.isOutOfBounds = function(pos, radius) {
+    return ((pos[0] > this.DIM_X + radius - 1) || (pos[0] < -1 * radius) || (pos[1] > this.DIM_Y + radius - 1) || (pos[1] < -1 * radius));
+}
+
 Game.prototype.wrap = function(pos, radius) {
     if(pos[0] > this.DIM_X + radius - 1) {
         return [-1 * radius, pos[1]];

@@ -5,6 +5,7 @@ function Bullet(i_pos, i_game, i_vel) {
     this.RADIUS = 4;
     this.COLOR = "green";
     MovingObject.call(this, {pos: i_pos, vel: i_vel, radius: this.RADIUS, color: this.COLOR, game: i_game});
+    this.isWrappable = false;
 }
 Util.inherits(Bullet, MovingObject);
 
