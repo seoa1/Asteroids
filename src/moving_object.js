@@ -4,6 +4,7 @@ function MovingObject(options) {
     this.vel = options.vel;
     this.radius = options.radius;
     this.color = options.color;
+    this.game = options.game;
 }
 
 MovingObject.prototype.draw = function(ctx) {
@@ -13,7 +14,17 @@ MovingObject.prototype.draw = function(ctx) {
     ctx.fill();
 }
 MovingObject.prototype.move = function() {
-    this.pos = [this.pos[0] + this.vel[0], this.pos[1] + this.vel[1]];
+    this.pos = this.game.wrap([this.pos[0] + this.vel[0], this.pos[1] + this.vel[1]], this.radius);
+}
+MovingObject.prototype.isCollidedWith = function(otherObject) {
+    let a = Math.abs(this.pos[0] - otherObject.pos[0]);
+    let b = Math.abs(this.pos[1] - otherObject.pos[1]);
+    return Math.sqrt(a**2 + b**2) < this.radius + otherObject.radius;
+}
+
+MovingObject.prototype.collideWith = function(otherObject) {
+    this.game.remove(this);
+    this.game.remove(otherObject);
 }
 
 module.exports = MovingObject;
